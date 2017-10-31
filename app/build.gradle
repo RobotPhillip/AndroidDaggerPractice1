@@ -26,6 +26,8 @@ project.ext {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // support
     implementation "com.android.support:appcompat-v7:$project.supportLibraryVersion"
     implementation "com.android.support:design:$project.supportLibraryVersion"
 
