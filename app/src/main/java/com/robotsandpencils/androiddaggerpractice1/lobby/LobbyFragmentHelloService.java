@@ -5,4 +5,8 @@ package com.robotsandpencils.androiddaggerpractice1.lobby;
  */
 
 public class LobbyFragmentHelloService {
+
+    public String sayHello() {
+        return "Hello from LobbyFragmentHelloService";
+    }
 }

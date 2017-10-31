@@ -7,10 +7,10 @@ import dagger.Provides;
  * Created by pwray on 2017-10-30.
  */
 @Module
-public class LobbyFragmentModule {
+public class LobbyActivityModule {
 
     @Provides
-    LobbyFragmentHelloService provideLobbyFragmentHelloService() {
-        return new LobbyFragmentHelloService();
+    LobbyHelloService providesLobbyHelloService() {
+        return new LobbyHelloService();
     }
 }
