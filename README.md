@@ -8,4 +8,4 @@ I discovered that `com.android.support:appcompat-v7` and `com.android.support:de
 both have to be explicitly configured in the app `build.gradle` to reference the same support version.
 ### Dagger code generation
 The DaggerAppComponent class, which is mandatory for the App class, will only generate after the Activity/Activities
-referenced in the BuildersModule is created.  It contains the concrete implementation of providers, builders, factories and subcomponents that define the object of the app whose initial point of contact is AppComponent.
+referenced in the BuildersModule is created.  It contains the concrete implementation of providers, builders, factories and subcomponents that define the object graph of the app whose initial point of contact is AppComponent.
