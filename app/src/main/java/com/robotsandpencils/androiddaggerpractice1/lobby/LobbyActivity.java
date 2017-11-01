@@ -1,23 +1,20 @@
 package com.robotsandpencils.androiddaggerpractice1.lobby;
 
 import android.app.Fragment;
-//import android.support.v4.app.Fragment;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
 
 import com.robotsandpencils.androiddaggerpractice1.R;
 import com.robotsandpencils.androiddaggerpractice1.common.CommonHelloService;
+import com.robotsandpencils.androiddaggerpractice1.databinding.LobbyActivityBinding;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasFragmentInjector;
-import dagger.android.support.HasSupportFragmentInjector;
 
 /**
  * Created by pwray on 2017-10-30.
@@ -29,7 +26,6 @@ import dagger.android.support.HasSupportFragmentInjector;
  */
 
 public class LobbyActivity extends AppCompatActivity implements HasFragmentInjector {
-//public class LobbyActivity extends AppCompatActivity implements HasSupportFragmentInjector {
 
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
@@ -40,18 +36,15 @@ public class LobbyActivity extends AppCompatActivity implements HasFragmentInjec
     @Inject
     LobbyHelloService lobbyHelloService;
 
-    @BindView(R.id.common_hello)
-    TextView commonHelloTextView;
-
-    @BindView(R.id.lobby_hello)
-    TextView lobbyHelloTextView;
+    private LobbyActivityBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lobby_activity);
-        ButterKnife.bind(this);
+
+        // migrate to data binding
+        binding = DataBindingUtil.setContentView(this, R.layout.lobby_activity);
     }
 
     @Override
@@ -62,11 +55,11 @@ public class LobbyActivity extends AppCompatActivity implements HasFragmentInjec
     }
 
     private void sayCommonHello() {
-        commonHelloTextView.setText(commonHelloService.sayHello());
+        binding.commonHello.setText(commonHelloService.sayHello());
     }
 
     private void sayLobbyHello() {
-        lobbyHelloTextView.setText(lobbyHelloService.sayHello());
+        binding.lobbyHello.setText(lobbyHelloService.sayHello());
     }
 
     @Override
@@ -74,8 +67,4 @@ public class LobbyActivity extends AppCompatActivity implements HasFragmentInjec
         return fragmentDispatchingAndroidInjector;
     }
 
-//    @Override
-//    public AndroidInjector<Fragment> supportFragmentInjector() {
-//        return fragmentDispatchingAndroidInjector;
-//    }
 }
