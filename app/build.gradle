@@ -2,6 +2,9 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
+    dataBinding {
+        enabled = true
+    }
     defaultConfig {
         applicationId "com.robotsandpencils.androiddaggerpractice1"
         minSdkVersion 27
@@ -47,7 +50,7 @@ dependencies {
     // implementation "com.google.dagger:dagger-android:$project.daggerVersion
 
     // ButterKnife
-    compile "com.jakewharton:butterknife:$project.butterKnifeVersion"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$project.butterKnifeVersion"
+//    compile "com.jakewharton:butterknife:$project.butterKnifeVersion"
+//    annotationProcessor "com.jakewharton:butterknife-compiler:$project.butterKnifeVersion"
 
 }
