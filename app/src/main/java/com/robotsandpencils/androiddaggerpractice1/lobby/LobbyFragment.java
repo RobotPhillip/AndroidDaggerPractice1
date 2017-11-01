@@ -1,24 +1,20 @@
 package com.robotsandpencils.androiddaggerpractice1.lobby;
 
 import android.app.Fragment;
-//import android.support.v4.app.Fragment;
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.robotsandpencils.androiddaggerpractice1.R;
+import com.robotsandpencils.androiddaggerpractice1.databinding.LobbyFragmentBinding;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import dagger.android.AndroidInjection;
-//import dagger.android.support.AndroidSupportInjection;
 
 /**
  * Created by pwray on 2017-10-30.
@@ -29,10 +25,7 @@ public class LobbyFragment extends Fragment {
     @Inject
     LobbyFragmentHelloService lobbyFragmentHelloService;
 
-    @BindView(R.id.lobby_fragment_hello)
-    TextView lobbyFragmentHelloTextView;
-
-    private Unbinder unbinder;
+    private LobbyFragmentBinding binding;
 
     @Override
     public void onAttach(Context context) {
@@ -46,8 +39,9 @@ public class LobbyFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.lobby_fragment, container, false);
-        unbinder = ButterKnife.bind(this, view);
+        binding = DataBindingUtil.inflate(inflater, R.layout.lobby_fragment, container, false);
+        View view = binding.getRoot();
+
         return view;
     }
 
@@ -60,10 +54,10 @@ public class LobbyFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
+        binding.unbind();
     }
 
     private void sayFragmentHello() {
-        lobbyFragmentHelloTextView.setText(lobbyFragmentHelloService.sayHello());
+        binding.lobbyFragmentHello.setText(lobbyFragmentHelloService.sayHello());
     }
 }
